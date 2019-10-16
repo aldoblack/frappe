@@ -80,11 +80,11 @@ class MariaDBDatabase(Database):
 		if usessl:
 			conn = pymysql.connect(self.host, self.user or '', self.password or '',
 				charset='utf8mb4', use_unicode = True, ssl=ssl_params,
-				conv = conversions, local_infile = frappe.conf.local_infile)
+				conv = conversions, local_infile = frappe.conf.local_infile, port=frappe.conf.db_port or 3306)
 		else:
 			conn = pymysql.connect(self.host, self.user or '', self.password or '',
 				charset='utf8mb4', use_unicode = True, conv = conversions,
-				local_infile = frappe.conf.local_infile)
+				local_infile = frappe.conf.local_infile, port=frappe.conf.db_port or 3306)
 
 		# MYSQL_OPTION_MULTI_STATEMENTS_OFF = 1
 		# # self._conn.set_server_option(MYSQL_OPTION_MULTI_STATEMENTS_OFF)
